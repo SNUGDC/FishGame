@@ -31,19 +31,14 @@ public class PlayerController : MonoBehaviour {
 		if (other.tag == "Water") {
 			inwater_do ();
 		} 
-	}
-	void OnCollisionEnter2D(Collision2D other ){
 		if (other.gameObject.tag == "Ground") {
 			land_do ();
 		}
 	}
-
 	void OnTriggerExit2D(Collider2D other){
 		if (other.tag == "Water") {
 			inwater_not_do ();
 		}
-	}
-	void OnCollisionExit2D(Collision2D other ){
 		if (other.gameObject.tag == "Ground") {
 			land_not_do ();
 		}
