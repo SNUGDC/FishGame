@@ -13,6 +13,10 @@ public class PlayerValues : MonoBehaviour {
 
 	public Text left_time_text;
 
+	public float accY_before;
+	public float accY_now;
+	public float accY_delta;
+
 	void Awake(){
 	}
 }

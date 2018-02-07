@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour {
 	private PlayerValues PV;
 	private Rigidbody2D rb;
 	private GameController GC;
+	public float snapBoundary = 0.2f;
 	void Awake(){
 		PV =GameObject.FindGameObjectWithTag("PlayerValues").GetComponent<PlayerValues> ();
 		rb = gameObject.GetComponent<Rigidbody2D> ();
@@ -15,11 +16,14 @@ public class PlayerController : MonoBehaviour {
 		PV.inwater = true; // start in pot
 		PV.gameover=false;
 		PV.land = false;
+		PV.accY_now = Input.acceleration.y;
 	}//initialize
 	void Update () {
 		PV.touchcount = Input.touchCount;
+		GetDeltaAccY();
+		Debug.Log(Input.acceleration.x + ", "+Input.acceleration.y + ", " + Input.acceleration.z);
 		if (PV.inwater==true||PV.land==true) {
-			if (PV.touchcount == 0)
+			if (isNotJumping())
 				return;
 			Vector2 tilt=new Vector2(Input.acceleration.x,-Input.acceleration.y);
 			rb.velocity = tilt.normalized*40;
@@ -44,7 +48,24 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-
+	void GetDeltaAccY()
+	{
+		PV.accY_before = PV.accY_now;
+		PV.accY_now = Input.acceleration.y;
+		PV.accY_delta = PV.accY_now - PV.accY_before;
+	}
+	bool isNotJumping()
+	{
+		if(PV.touchcount == 0 && Mathf.Abs(PV.accY_delta) < snapBoundary) return true;
+		else if(PV.touchcount != 0){
+			Debug.Log("Jumped by touch");
+			return false;
+		}
+		else{
+			Debug.Log("Jumped by snap");
+			return false;
+		}
+	}
 
 
 
