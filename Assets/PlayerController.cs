@@ -38,6 +38,9 @@ public class PlayerController : MonoBehaviour {
 		if (other.gameObject.tag == "Ground") {
 			land_do ();
 		}
+		if (other.tag == "Obstacle"){
+			obsatcle_do();
+		}
 	}
 	void OnTriggerExit2D(Collider2D other){
 		if (other.tag == "Water") {
@@ -81,5 +84,9 @@ public class PlayerController : MonoBehaviour {
 	}
 	void land_not_do(){
 		PV.land = false;
+	}
+	void obsatcle_do()
+	{
+		rb.velocity = new Vector2(-1 * rb.velocity.x, Input.acceleration.y * 20);
 	}
 }
