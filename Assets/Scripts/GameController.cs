@@ -14,13 +14,12 @@ public class GameController : MonoBehaviour {
 		hidelefttime ();
 	}
 	void Update(){
-		if (PV.gameover)
+		if (PV.gameover==true)
 			gameover ();
 	}
 	void gameover(){
 		Player.transform.position = PV.Savepoint.position;
 		PV.StartinWater ();
-		PV.gameover = false;
 	}
 
 	public void showlefttime(){
@@ -41,6 +40,7 @@ public class GameController : MonoBehaviour {
 			yield return new WaitForSeconds (0.1f);
 			PV.lefttime_x10 -=1;
 			if (PV.lefttime_x10 <= 0) {
+				Debug.Log ("gameover");
 				PV.gameover = true;
 				break;
 			}

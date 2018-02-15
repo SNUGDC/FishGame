@@ -11,12 +11,13 @@ public class PlayerController : MonoBehaviour {
 		PV =GameObject.FindGameObjectWithTag("PlayerValues").GetComponent<PlayerValues> ();
 		rb = gameObject.GetComponent<Rigidbody2D> ();
 		GC = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameController> ();
+		PV.StartinWater ();
 	}// get components
 	void Start(){
-		PV.StartinWater ();
-		PV.accY_now = Input.acceleration.y;
+	   	PV.accY_now = Input.acceleration.y;
 	}//initialize
 	void Update () {
+		/*
 		PV.touchcount = Input.touchCount;
 		GetDeltaAccY();
 		Debug.Log(Input.acceleration.x + ", "+Input.acceleration.y + ", " + Input.acceleration.z);
@@ -29,41 +30,60 @@ public class PlayerController : MonoBehaviour {
 				tilt.y*PV.grad.x+tilt.x*PV.grad.y
 			)*5f;
 		}
+		*/
+
+		if (PV.inwater == true || PV.land == true) {
+			if (Input.GetKeyDown ("d")) {
+				Debug.Log ("d pressed");
+				Vector2 tilt = new Vector2 (1, 1).normalized;
+				rb.velocity = new Vector2 (
+					tilt.x * PV.grad.x - tilt.y * PV.grad.y,
+					tilt.y * PV.grad.x + tilt.x * PV.grad.y
+				) * 10f;
+			}
+			if (Input.GetKeyDown ("a")) {
+				Vector2 tilt = new Vector2 (-1, 1).normalized;
+				rb.velocity = new Vector2 (
+					tilt.x * PV.grad.x - tilt.y * PV.grad.y,
+					tilt.y * PV.grad.x + tilt.x * PV.grad.y
+				) * 10f;
+			}
+		}
 	}
 
 
-	void OnTriggerEnter2D(Collider2D other){
+	void OnTriggerStay2D(Collider2D other){
 		if (other.tag == "Water") {
 			inwater_do (other);
 		} 
 		if (other.tag == "Obstacle"){
 			obsatcle_do();
 		}
-		if (other.tag == "Ground_Top") {
-			setgrad ((other.transform.rotation.z/180)*Mathf.PI);
-		} 
-		if (other.tag == "Ground_Bottom") {
-			setgrad ((other.transform.rotation.z+180)/180*Mathf.PI);
-		} 
-	}
-	void OnCollisionEnter2D(Collision2D other){
-		if (other.gameObject.tag == "Ground") {
+		if (other.transform.parent.tag == "Ground") {
 			land_do ();
+			if (other.tag == "Ground_Top") {
+				setgrad ((other.transform.eulerAngles.z / 180) * Mathf.PI);
+			} 
+			if (other.tag == "Ground_Bottom") {
+				setgrad ((other.transform.eulerAngles.z + 180) / 180 * Mathf.PI);
+			} 
+			if (other.tag == "Ground_60") {
+				setgrad ((other.transform.eulerAngles.z + 60) / 180 * Mathf.PI);
+			} 
+			if (other.tag == "Ground_-60") {
+				setgrad ((other.transform.eulerAngles.z - 60) / 180 * Mathf.PI);
+			} 
 		}
 	}
-
 	void OnTriggerExit2D(Collider2D other){
 		if (other.tag == "Water") {
 			inwater_not_do ();
 		}
-
-	}
-	void OnCollisionExit2D(Collision2D other){
-		if (other.gameObject.tag == "Ground") {
+		if (other.transform.parent.tag == "Ground") {
 			land_not_do ();
 		}
-	}
 
+	}
 	void GetDeltaAccY()
 	{
 		PV.accY_before = PV.accY_now;
@@ -88,15 +108,18 @@ public class PlayerController : MonoBehaviour {
 	void inwater_do(Collider2D other){
 		PV.inwater = true;
 		PV.Savepoint = other.transform;
+		PV.resetgrad ();
 	}
 	void inwater_not_do(){
 		PV.inwater = false;
  		GC.set_time_limit (20);
 	}
 	void land_do (){
+		Debug.Log ("land_do called");
 		PV.land = true;
 	}
 	void land_not_do(){
+		Debug.Log ("land_not_do called");
 		PV.land = false;
 	}
 	void obsatcle_do()
@@ -104,6 +127,6 @@ public class PlayerController : MonoBehaviour {
 		rb.velocity = new Vector2(-1 * rb.velocity.x, Input.acceleration.y * 20);
 	}
 	void setgrad(float degree){
-		PV.grad= new Vector2 (Mathf.Sin (degree), Mathf.Cos (degree));
+		PV.grad= new Vector2 (Mathf.Cos (degree), Mathf.Sin (degree));
 	}
 }

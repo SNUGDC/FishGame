@@ -8,6 +8,10 @@ TagManager:
   - Ground
   - PlayerValues
   - Obstacle
+  - Ground_Top
+  - Ground_Bottom
+  - Ground_60
+  - Ground_-60
   layers:
   - Default
   - TransparentFX

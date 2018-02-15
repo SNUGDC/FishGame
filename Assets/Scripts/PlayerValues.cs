@@ -20,12 +20,13 @@ public class PlayerValues : MonoBehaviour {
 	public Vector2 grad;
 	public Transform Savepoint;
 
-	void Awake(){
-		grad = new Vector2 (0, 0);
-	}
 	public void StartinWater(){
+		resetgrad ();
 		inwater = true; // start in water
 		gameover=false;
 		land = false;
+	}
+	public void resetgrad(){
+		grad = new Vector2 (1, 0);
 	}
 }
