@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 	private PlayerValues PV;
+	private VFX_Player VFXP;
 	private GameObject Player;
 	void Awake(){
 		PV =GameObject.FindGameObjectWithTag("PlayerValues").GetComponent<PlayerValues> ();
 		Player = GameObject.FindGameObjectWithTag ("Player");
+		VFXP = Player.GetComponent<VFX_Player> ();
 	}
 	void Start(){
 		hidelefttime ();
@@ -40,12 +42,19 @@ public class GameController : MonoBehaviour {
 			showlefttime ();
 			yield return new WaitForSeconds (0.01f);
 			PV.time_left_x100 -=1;
+			if (PV.time_left_x100 < 6000)
+				VFXP.Activate_PlayerSprite (1);
+			if (PV.time_left_x100 < 3000)
+				VFXP.Activate_PlayerSprite (2);
+			if (PV.time_left_x100 < 1500)
+				VFXP.Activate_PlayerSprite (3);
 			if (PV.time_left_x100 <= 0) {
 				Debug.Log ("gameover");
 				PV.gameover = true;
 				break;
 			}
 		}
+		VFXP.Activate_PlayerSprite (0);
 		hidelefttime ();
 	}
 }

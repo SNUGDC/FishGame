@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour {
 		)*PV.speed;
 
 		PV.touchcount = Input.touchCount;
-		GetDeltaAccY();
 		Debug.Log(Input.acceleration.x + ", "+Input.acceleration.y + ", " + Input.acceleration.z);
 
 
@@ -35,9 +34,8 @@ public class PlayerController : MonoBehaviour {
 			PV.showangle_on = true;
 		}
 		if (PV.inwater==true||PV.land==true) {
-			if (isNotJumping())
-				return;
 			
+			if(PV.touchcount!=0)
 			rb.velocity = coeffOfV * PV.velocity;
 		}
 
@@ -69,6 +67,9 @@ public class PlayerController : MonoBehaviour {
 		} 
 		if (other.tag == "Obstacle"){
 			obstacle_do();
+		}
+		if (other.tag == "Dead") {
+			Dead_do ();
 		}
 		if (other.transform.parent != null) {
 			if (other.transform.parent.tag == "Ground") {
@@ -111,27 +112,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 	}
-	void GetDeltaAccY()
-	{
-		PV.accY_before = PV.accY_now;
-		PV.accY_now = Input.acceleration.y;
-		PV.accY_delta = PV.accY_now - PV.accY_before;
-	}
-	bool isNotJumping()
-	{
-		if(PV.touchcount == 0 && Mathf.Abs(PV.accY_delta) < snapBoundary) return true;
-		else if(PV.touchcount != 0){
-			Debug.Log("Jumped by touch");
-			return false;
-		}
-		else{
-			Debug.Log("Jumped by snap");
-			return false;
-		}
-	}
-
-
-
+		
 	void inwater_do(Collider2D other){
 		PV.inwater = true;
 		PV.Savepoint = other.transform;
@@ -158,5 +139,7 @@ public class PlayerController : MonoBehaviour {
 	void setgrad(float degree){
 		PV.grad= new Vector2 (Mathf.Cos (degree), Mathf.Sin (degree));
 		PV.angle_ground = degree;
+	}
+	void Dead_do(){
 	}
 }
