@@ -11,7 +11,7 @@ public class PlayerValues : MonoBehaviour {
 
 	public int touchcount;
 	public int time_limit;
-	public int time_left;
+	public int time_left_x100;
 
 	public Text left_time_text;
 
@@ -26,13 +26,6 @@ public class PlayerValues : MonoBehaviour {
 	public Vector2 velocity;
 
 	public Transform Savepoint;
-
-	/// <summary>
-	///  code for test
-	/// </summary>
-	public Transform Temp1;
-	public Transform Temp2;
-	public Transform Temp3;
 
 
 	public void StartinWater(){

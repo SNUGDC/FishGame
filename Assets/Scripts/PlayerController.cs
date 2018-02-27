@@ -126,14 +126,7 @@ public class PlayerController : MonoBehaviour {
 
 	void inwater_do(Collider2D other){
 		PV.inwater = true;
-
-	//	PV.Savepoint = other.transform;
-
-		//code for test
-		if (other.transform == PV.Temp2)
-			PV.Savepoint = PV.Temp2;
-		if (other.transform == PV.Temp3)
-			PV.Savepoint = PV.Temp3;
+		PV.Savepoint = other.transform;
 		PV.resetgrad ();
 	}
 	void inwater_not_do(){

@@ -24,22 +24,23 @@ public class GameController : MonoBehaviour {
 
 	public void showlefttime(){
 
-		PV.left_time_text.text = "Time Left : " + (int)PV.time_left;
+		PV.left_time_text.text = "Time Left : " + (float)PV.time_left_x100/100;
 	}
 	public void hidelefttime(){
 		PV.left_time_text.text = "";
 	}
 
 	public void set_left_time(){
-		PV.time_left =PV.time_limit ;
+		PV.time_left_x100 =PV.time_limit*100 ;
 		StartCoroutine (timecounter());
 	}
 	IEnumerator timecounter(){
+		
 		while (!PV.inwater) {
 			showlefttime ();
-			yield return new WaitForSeconds (1f);
-			PV.time_left -=1;
-			if (PV.time_left <= 0) {
+			yield return new WaitForSeconds (0.01f);
+			PV.time_left_x100 -=1;
+			if (PV.time_left_x100 <= 0) {
 				Debug.Log ("gameover");
 				PV.gameover = true;
 				break;
