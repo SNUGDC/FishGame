@@ -1965,7 +1965,7 @@ GameObject:
   - component: {fileID: 840419718}
   - component: {fileID: 840419717}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: TextMeshOfSuperJump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4196,6 +4196,52 @@ Transform:
   m_PrefabParentObject: {fileID: 4991959226529902, guid: 7e679fc2ea9bf2d438bf4d47923b23ba,
     type: 2}
   m_PrefabInternal: {fileID: 1679159931}
+--- !u!1001 &1679406808
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4991959226529902, guid: c4854b2b3bd85eb4a91dc6fd60bd7533, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4991959226529902, guid: c4854b2b3bd85eb4a91dc6fd60bd7533, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4991959226529902, guid: c4854b2b3bd85eb4a91dc6fd60bd7533, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4991959226529902, guid: c4854b2b3bd85eb4a91dc6fd60bd7533, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4991959226529902, guid: c4854b2b3bd85eb4a91dc6fd60bd7533, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4991959226529902, guid: c4854b2b3bd85eb4a91dc6fd60bd7533, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4991959226529902, guid: c4854b2b3bd85eb4a91dc6fd60bd7533, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4991959226529902, guid: c4854b2b3bd85eb4a91dc6fd60bd7533, type: 2}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4991959226529902, guid: c4854b2b3bd85eb4a91dc6fd60bd7533, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 6
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: c4854b2b3bd85eb4a91dc6fd60bd7533, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1689273914
 Prefab:
   m_ObjectHideFlags: 0
@@ -5206,6 +5252,7 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10

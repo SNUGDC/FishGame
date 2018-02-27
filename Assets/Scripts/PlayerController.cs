@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
 	private GameController GC;
 	public GameObject SA;
 	public float snapBoundary = 0.2f;
+	int coeffOfV = 1;
 	void Awake(){
 		PV =GameObject.FindGameObjectWithTag("PlayerValues").GetComponent<PlayerValues> ();
 		rb = gameObject.GetComponent<Rigidbody2D> ();
@@ -37,7 +38,7 @@ public class PlayerController : MonoBehaviour {
 			if (isNotJumping())
 				return;
 			
-			rb.velocity = PV.velocity;
+			rb.velocity = coeffOfV * PV.velocity;
 		}
 
 		/*
@@ -72,6 +73,13 @@ public class PlayerController : MonoBehaviour {
 		if (other.transform.parent != null) {
 			if (other.transform.parent.tag == "Ground") {
 				land_do ();
+				if(other.tag == "Ground_Super"){
+					coeffOfV = 2;
+				}
+				else {
+					coeffOfV = 1;
+				}
+
 				if (other.tag == "Ground_Top") {
 					setgrad ((other.transform.eulerAngles.z / 180) * Mathf.PI);
 				} 
