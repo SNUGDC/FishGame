@@ -12,7 +12,7 @@ TagManager:
   - Ground_Bottom
   - Ground_60
   - Ground_-60
-  - Dead
+  - Ground_Super
   layers:
   - Default
   - TransparentFX
