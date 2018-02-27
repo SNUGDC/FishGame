@@ -20,7 +20,14 @@ public class GameController : MonoBehaviour {
 			gameover ();
 	}
 	void gameover(){
+		/*
+		 * Write code for stop Scenes, gameover UI
+		 * 
+		 * 
+		 * 
+		*/
 		Player.transform.position = PV.Savepoint.position;
+		Player.GetComponent<Rigidbody2D> ().velocity = new Vector3 (0, 0, 0);
 		PV.StartinWater ();
 	}
 

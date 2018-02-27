@@ -25,9 +25,6 @@ public class PlayerController : MonoBehaviour {
 		)*PV.speed;
 
 		PV.touchcount = Input.touchCount;
-		Debug.Log(Input.acceleration.x + ", "+Input.acceleration.y + ", " + Input.acceleration.z);
-
-
 		if (PV.land&&PV.showangle_on==false) {
 			Instantiate(SA,transform.position, transform.rotation);
 			PV.showangle_on = true;
@@ -72,18 +69,6 @@ public class PlayerController : MonoBehaviour {
 		if (other.transform.parent != null) {
 			if (other.transform.parent.tag == "Ground") {
 				land_do ();
-				if (other.tag == "Ground_Top") {
-					setgrad ((other.transform.eulerAngles.z / 180) * Mathf.PI);
-				} 
-				if (other.tag == "Ground_Bottom") {
-					setgrad ((other.transform.eulerAngles.z + 180) / 180 * Mathf.PI);
-				} 
-				if (other.tag == "Ground_60") {
-					setgrad ((other.transform.eulerAngles.z + 60) / 180 * Mathf.PI);
-				} 
-				if (other.tag == "Ground_-60") {
-					setgrad ((other.transform.eulerAngles.z - 60) / 180 * Mathf.PI);
-				} 
 			}
 		}
 	}
@@ -91,6 +76,18 @@ public class PlayerController : MonoBehaviour {
 		if (other.transform.parent != null) {
 			if (other.transform.parent.tag == "Ground")
 				land_do ();
+			if (other.tag == "Ground_Top") {
+				setgrad ((other.transform.parent.transform.eulerAngles.z / 180) * Mathf.PI);
+			} 
+			if (other.tag == "Ground_Bottom") {
+				setgrad ((other.transform.parent.transform.eulerAngles.z + 180) / 180 * Mathf.PI);
+			} 
+			if (other.tag == "Ground_60") {
+				setgrad ((other.transform.parent.transform.eulerAngles.z + 60) / 180 * Mathf.PI);
+			} 
+			if (other.tag == "Ground_-60") {
+				setgrad ((other.transform.parent.transform.eulerAngles.z - 60) / 180 * Mathf.PI);
+			} 
 		}
 	}
 	void OnTriggerExit2D(Collider2D other){
@@ -130,7 +127,9 @@ public class PlayerController : MonoBehaviour {
 	void setgrad(float degree){
 		PV.grad= new Vector2 (Mathf.Cos (degree), Mathf.Sin (degree));
 		PV.angle_ground = degree;
+		Debug.Log ("Setgrad called"+PV.grad.x+","+PV.grad.y);
 	}
 	void Dead_do(){
+		PV.gameover = true;
 	}
 }
