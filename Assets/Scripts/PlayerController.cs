@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
 	private Rigidbody2D rb;
 	private GameController GC;
 	public GameObject SA;
+	public VFX_Player VFXP;
 	public float snapBoundary = 0.2f;
 	float coeffOfV = 1;
 	Vector2 savedVelocity;
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour {
 		PV =GameObject.FindGameObjectWithTag("PlayerValues").GetComponent<PlayerValues> ();
 		rb = gameObject.GetComponent<Rigidbody2D> ();
 		GC = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameController> ();
+		VFXP = gameObject.GetComponent<VFX_Player>();
 		PV.StartinWater ();
 	}// get components
 	void Start(){
@@ -116,6 +118,8 @@ public class PlayerController : MonoBehaviour {
 		PV.Savepoint = other.transform;
 		PV.resetgrad ();
 		StopCoroutine (GC.TimeCounter);
+		GC.hidelefttime();
+		VFXP.Activate_PlayerSprite (0);
 	}
 	void inwater_not_do(){
 		PV.inwater = false;
