@@ -140,5 +140,6 @@ public class PlayerController : MonoBehaviour {
 	}
 	void Dead_do(){
 		PV.gameover = true;
+		PV.deadBy = DeadBy.COOKED;
 	}
 }
