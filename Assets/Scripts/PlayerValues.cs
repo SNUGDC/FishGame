@@ -8,6 +8,7 @@ public class PlayerValues : MonoBehaviour {
 	public bool inwater;
 	public bool land;
 	public bool showangle_on;
+	public bool isPaused;
 
 	public int touchcount;
 	public int time_limit;

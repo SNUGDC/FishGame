@@ -6,14 +6,11 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour {
 
 	public GameObject popUp;
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	PlayerValues PV;
+
+	void Awake(){
+		PV =GameObject.FindGameObjectWithTag("PlayerValues").GetComponent<PlayerValues> ();
 	}
 	public void MoveScene(string sceneName){
 		SceneManager.LoadScene(sceneName);
@@ -23,5 +20,6 @@ public class UIManager : MonoBehaviour {
 	}
 	public void SetPopUpActive(bool b){
 		popUp.SetActive(b);
+		PV.isPaused = b;
 	}
 }

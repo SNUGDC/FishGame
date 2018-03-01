@@ -50,7 +50,9 @@ public class GameController : MonoBehaviour {
 		while (!PV.inwater) {
 			showlefttime ();
 			yield return new WaitForSeconds (0.01f);
-			PV.time_left_x100 -=1;
+
+			if (!PV.isPaused) PV.time_left_x100 -=1;
+			
 			if (PV.time_left_x100 < 4000)
 				VFXP.Activate_PlayerSprite (1);
 			if (PV.time_left_x100 < 2000)

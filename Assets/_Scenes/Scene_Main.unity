@@ -851,6 +851,7 @@ MonoBehaviour:
   inwater: 0
   land: 0
   showangle_on: 0
+  isPaused: 0
   touchcount: 0
   time_limit: 60
   time_left_x100: 0
