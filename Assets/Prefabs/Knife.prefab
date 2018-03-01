@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 60881208777718946}
   m_Layer: 0
   m_Name: Collider_Dead
-  m_TagString: Ground
+  m_TagString: Dead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 212366399637973370}
   m_Layer: 0
   m_Name: Knife
-  m_TagString: Dead
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

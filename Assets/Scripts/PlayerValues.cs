@@ -13,14 +13,11 @@ public class PlayerValues : MonoBehaviour {
 	public int touchcount;
 	public int time_limit;
 	public int time_left_x100;
+	public int How_many_dead=0;
 
 	public Text left_time_text;
 
-	public float accY_before;
-	public float accY_now;
-	public float accY_delta;
 	public float speed;
-	public float angle_ground;
 
 
 	public Vector2 grad;
