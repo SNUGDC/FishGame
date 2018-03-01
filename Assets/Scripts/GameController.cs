@@ -31,6 +31,7 @@ public class GameController : MonoBehaviour {
 		
 		gameOverUI.GetComponent<GameOver>().StartFade(duration);
 		yield return new WaitForSeconds(3f);
+		VFXP.Activate_PlayerSprite (0);
 		Player.transform.position = PV.Savepoint.position;
 		Player.transform.rotation = Quaternion.identity;
 		Player.GetComponent<Rigidbody2D> ().velocity = new Vector3 (0, 0, 0);
@@ -55,7 +56,7 @@ public class GameController : MonoBehaviour {
 		
 		while (!PV.inwater) {
 			showlefttime ();
-			yield return new WaitForSeconds (0.01f);
+			yield return new WaitForSecondsRealtime (0.005f);
 
 			if (!PV.isPaused) PV.time_left_x100 -=1;
 			
@@ -71,7 +72,7 @@ public class GameController : MonoBehaviour {
 				break;
 			}
 		}
-		VFXP.Activate_PlayerSprite (0);
+
 		hidelefttime ();
 	}
 }

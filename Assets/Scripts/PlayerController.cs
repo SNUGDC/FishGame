@@ -57,26 +57,6 @@ public class PlayerController : MonoBehaviour {
 				coeffOfV = 1;
 			}
 		}
-
-		/*
-		if (PV.inwater == true || PV.land == true) {
-			if (Input.GetKeyDown ("d")) {
-				Debug.Log ("d pressed");
-				Vector2 tilt = new Vector2 (1, 1).normalized;
-				rb.velocity = new Vector2 (
-					tilt.x * PV.grad.x - tilt.y * PV.grad.y,
-					tilt.y * PV.grad.x + tilt.x * PV.grad.y
-				) * 10f;
-			}
-			if (Input.GetKeyDown ("a")) {
-				Vector2 tilt = new Vector2 (-1, 1).normalized;
-				rb.velocity = new Vector2 (
-					tilt.x * PV.grad.x - tilt.y * PV.grad.y,
-					tilt.y * PV.grad.x + tilt.x * PV.grad.y
-				) * 10f;
-			}
-		}
-		*/
 	}
 
 
