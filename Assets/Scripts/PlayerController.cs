@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour {
 		}
 		if (PV.inwater==true||PV.land==true) {
 			
-			if(PV.touchcount!=0){
+			if(PV.touchcount!=0 && !PV.gameover){
 				rb.velocity = coeffOfV * PV.velocity;
 				coeffOfV = 1;
 			}

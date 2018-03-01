@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour {
 	private PlayerValues PV;
 	private VFX_Player VFXP;
 	private GameObject Player;
+	public GameObject gameOverUI;
 	void Awake(){
 		PV =GameObject.FindGameObjectWithTag("PlayerValues").GetComponent<PlayerValues> ();
 		Player = GameObject.FindGameObjectWithTag ("Player");
@@ -16,21 +17,26 @@ public class GameController : MonoBehaviour {
 		hidelefttime ();
 	}
 	void Update(){
-		if (PV.gameover==true)
+		if (PV.gameover==true && !gameOverUI.GetComponent<GameOver>().isFading){
 			gameover ();
+		}
 		PV.Challangetime += Time.deltaTime;
 	}
 	void gameover(){
+		Debug.Log("gameover : "+Time.time);
+		StartCoroutine(RestartAfterDuration(3f));
+	}
+	IEnumerator RestartAfterDuration(float duration){
 		PV.How_many_dead++;
-		/*
-		 * Write code for stop Scenes, gameover UI
-		 * 
-		 * 
-		 * 
-		*/
+		
+		gameOverUI.GetComponent<GameOver>().StartFade(duration);
+		yield return new WaitForSeconds(3f);
 		Player.transform.position = PV.Savepoint.position;
+		Player.transform.rotation = Quaternion.identity;
 		Player.GetComponent<Rigidbody2D> ().velocity = new Vector3 (0, 0, 0);
+		Player.GetComponent<Rigidbody2D> ().angularVelocity = 0;
 		PV.StartinWater ();
+
 	}
 
 	public void showlefttime(){
