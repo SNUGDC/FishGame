@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour {
 	public GameObject SA;
 	public float snapBoundary = 0.2f;
 	float coeffOfV = 1;
+	Vector2 savedVelocity;
+	float savedAngularVelocity;
+	bool isPaused;
 	void Awake(){
 		PV =GameObject.FindGameObjectWithTag("PlayerValues").GetComponent<PlayerValues> ();
 		rb = gameObject.GetComponent<Rigidbody2D> ();
@@ -19,6 +22,23 @@ public class PlayerController : MonoBehaviour {
 	   	PV.accY_now = Input.acceleration.y;
 	}//initialize
 	void Update () {
+		if (PV.isPaused && !isPaused) {
+			isPaused = true;
+			savedVelocity = rb.velocity;
+			savedAngularVelocity = rb.angularVelocity;
+			Time.timeScale = 0.0f;
+			rb.simulated = false;
+			Debug.Log("Paused");
+			return;
+		}
+		else if (!PV.isPaused && isPaused){
+			Time.timeScale = 1.0f;
+			rb.simulated = true;
+			rb.velocity = savedVelocity;
+			rb.angularVelocity = savedAngularVelocity;
+			isPaused = false;
+			Debug.Log("Unpaused");
+		}
 		Vector2 tilt=new Vector2(Input.acceleration.x,-Input.acceleration.y).normalized;
 		PV.velocity=new Vector2(
 			tilt.x*PV.grad.x-tilt.y*PV.grad.y,

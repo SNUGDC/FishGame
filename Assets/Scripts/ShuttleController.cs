@@ -14,6 +14,11 @@ public class ShuttleController : MonoBehaviour {
 
 	Vector3 initPos, finalPos;
 	float timer;
+	PlayerValues PV;
+
+	void Awake() {
+		PV =GameObject.FindGameObjectWithTag("PlayerValues").GetComponent<PlayerValues> ();
+	}
 	void Start () {
 		initPos = start.position;
 		finalPos = end.position;
@@ -21,6 +26,8 @@ public class ShuttleController : MonoBehaviour {
 	}
 	
 	void Update () {
+		if(PV.isPaused) return; 
+		
 		if(useValueForType == ValueType.Speed){
 			float period = Vector3.Distance(finalPos, initPos)/value;
 			UseValueForPeriod(period);
