@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour {
 	}
 	public void MoveScene(string sceneName){
 		SceneManager.LoadScene(sceneName);
+		PV.isPaused = false;
 	}
 	public void QuitGame(){
 		Application.Quit();
