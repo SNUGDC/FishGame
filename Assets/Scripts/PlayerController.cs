@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour {
 			Debug.Log("Unpaused");
 		}
 		Vector2 tilt=new Vector2(Input.acceleration.x,-Input.acceleration.y).normalized;
+		tilt.y=tilt.y>0?tilt.y:-tilt.y;
 		PV.velocity=new Vector2(
 			tilt.x*PV.grad.x-tilt.y*PV.grad.y,
 			tilt.y*PV.grad.x+tilt.x*PV.grad.y

@@ -7,10 +7,12 @@ public class UIManager : MonoBehaviour {
 
 	public GameObject popUp;
 
-	PlayerValues PV;
+	PlayerValues PV = null;
 
 	void Awake(){
-		PV =GameObject.FindGameObjectWithTag("PlayerValues").GetComponent<PlayerValues> ();
+		if(GameObject.FindGameObjectWithTag("PlayerValues") != null){
+			PV = GameObject.FindGameObjectWithTag("PlayerValues").GetComponent<PlayerValues> ();
+		}
 	}
 	public void MoveScene(string sceneName){
 		SceneManager.LoadScene(sceneName);
@@ -20,6 +22,6 @@ public class UIManager : MonoBehaviour {
 	}
 	public void SetPopUpActive(bool b){
 		popUp.SetActive(b);
-		PV.isPaused = b;
+		if (PV != null) PV.isPaused = b;
 	}
 }
