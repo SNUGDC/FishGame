@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour {
 	private VFX_Player VFXP;
 	private GameObject Player;
 	public GameObject gameOverUI;
+	public Coroutine TimeCounter;
 	void Awake(){
 		PV =GameObject.FindGameObjectWithTag("PlayerValues").GetComponent<PlayerValues> ();
 		Player = GameObject.FindGameObjectWithTag ("Player");
@@ -17,6 +18,12 @@ public class GameController : MonoBehaviour {
 		hidelefttime ();
 	}
 	void Update(){
+		float timenow = Time.time;
+
+
+
+
+
 		if (PV.gameover==true && !gameOverUI.GetComponent<GameOver>().isFading){
 			gameover ();
 		}
@@ -42,31 +49,31 @@ public class GameController : MonoBehaviour {
 
 	public void showlefttime(){
 
-		PV.left_time_text.text = "Time Left : " + (float)PV.time_left_x100/100;
+		PV.left_time_text.text = "Time Left : " + PV.time_left;
 	}
 	public void hidelefttime(){
 		PV.left_time_text.text = "";
 	}
 
 	public void set_left_time(){
-		PV.time_left_x100 =PV.time_limit*100 ;
-		StartCoroutine (timecounter());
+		PV.time_left =PV.time_limit ;
+		TimeCounter=StartCoroutine (timecounter());
 	}
 	IEnumerator timecounter(){
 		
-		while (!PV.inwater) {
+		while (!PV.inwater&&!PV.gameover) {
 			showlefttime ();
-			yield return new WaitForSecondsRealtime (0.005f);
+			yield return new WaitForSeconds(1f);
 
-			if (!PV.isPaused) PV.time_left_x100 -=1;
+			if (!PV.isPaused) PV.time_left -=1;
 			
-			if (PV.time_left_x100 < 4000)
+			if (PV.time_left < 40)
 				VFXP.Activate_PlayerSprite (1);
-			if (PV.time_left_x100 < 2000)
+			if (PV.time_left < 20)
 				VFXP.Activate_PlayerSprite (2);
-			if (PV.time_left_x100 < 1000)
+			if (PV.time_left < 10)
 				VFXP.Activate_PlayerSprite (3);
-			if (PV.time_left_x100 <= 0) {
+			if (PV.time_left <= 0) {
 				Debug.Log ("gameover");
 				PV.gameover = true;
 				break;

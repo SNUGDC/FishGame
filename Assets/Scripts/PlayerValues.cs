@@ -12,7 +12,7 @@ public class PlayerValues : MonoBehaviour {
 
 	public int touchcount;
 	public int time_limit;
-	public int time_left_x100;
+	public int time_left;
 	public int How_many_dead=0;
 
 	public Text left_time_text;

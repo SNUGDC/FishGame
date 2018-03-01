@@ -115,6 +115,7 @@ public class PlayerController : MonoBehaviour {
 		PV.inwater = true;
 		PV.Savepoint = other.transform;
 		PV.resetgrad ();
+		StopCoroutine (GC.TimeCounter);
 	}
 	void inwater_not_do(){
 		PV.inwater = false;
