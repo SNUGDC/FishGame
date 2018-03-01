@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum DeadBy { DRIED, COOKED }
+
 public class GameOver : MonoBehaviour {
 
 	float initTime;
@@ -31,13 +33,14 @@ public class GameOver : MonoBehaviour {
 			canDisappear = false;
 		}
 	}
-	public void StartFade(float d){
+	public void StartFade(float d, DeadBy deadBy){
 		if(!isFading){
 			Debug.Log("startFade : "+Time.time);
 			gameObject.SetActive(true);
 			initTime = Time.time;
 			duration = d;
 			canDisappear = false;
+			text1.text = "YOU "+deadBy.ToString();
 			image.color = new Vector4(0,0,0,0);
 			text1.color = new Vector4(0.75f,0,0,0);
 			text2.color = new Vector4(0.75f,0.75f,0.75f,0);

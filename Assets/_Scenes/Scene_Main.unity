@@ -854,7 +854,7 @@ MonoBehaviour:
   isPaused: 0
   touchcount: 0
   time_limit: 60
-  time_left_x100: 0
+  time_left: 0
   How_many_dead: 0
   left_time_text: {fileID: 382684202}
   speed: 10.5
@@ -862,6 +862,7 @@ MonoBehaviour:
   grad: {x: 0, y: 0}
   velocity: {x: 0, y: 0}
   Savepoint: {fileID: 0}
+  deadBy: 0
 --- !u!4 &142657610
 Transform:
   m_ObjectHideFlags: 0
@@ -6981,6 +6982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SA: {fileID: 1109891168196544, guid: 890f7b16c9e0f464984e245dba6a2c1f, type: 2}
+  VFXP: {fileID: 0}
   snapBoundary: 0.2
 --- !u!4 &1253696094
 Transform:
@@ -11407,6 +11409,7 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -11638,7 +11641,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uBC84 \uD2BC"
+  m_Text: "\uB098\uAC00\uAE30"
 --- !u!222 &2138229311
 CanvasRenderer:
   m_ObjectHideFlags: 0

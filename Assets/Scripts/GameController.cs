@@ -36,7 +36,7 @@ public class GameController : MonoBehaviour {
 	IEnumerator RestartAfterDuration(float duration){
 		PV.How_many_dead++;
 		
-		gameOverUI.GetComponent<GameOver>().StartFade(duration);
+		gameOverUI.GetComponent<GameOver>().StartFade(duration, PV.deadBy);
 		yield return new WaitForSeconds(3f);
 		VFXP.Activate_PlayerSprite (0);
 		Player.transform.position = PV.Savepoint.position;
@@ -76,6 +76,7 @@ public class GameController : MonoBehaviour {
 			if (PV.time_left <= 0) {
 				Debug.Log ("gameover");
 				PV.gameover = true;
+				PV.deadBy = DeadBy.DRIED;
 				break;
 			}
 		}

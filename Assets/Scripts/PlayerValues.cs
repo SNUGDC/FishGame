@@ -25,7 +25,7 @@ public class PlayerValues : MonoBehaviour {
 	public Vector2 velocity;
 
 	public Transform Savepoint;
-
+	public DeadBy deadBy;
 
 	public void StartinWater(){
 		resetgrad ();
