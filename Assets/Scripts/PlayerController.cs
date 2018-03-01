@@ -16,7 +16,6 @@ public class PlayerController : MonoBehaviour {
 		PV.StartinWater ();
 	}// get components
 	void Start(){
-	   	PV.accY_now = Input.acceleration.y;
 	}//initialize
 	void Update () {
 		Vector2 tilt=new Vector2(Input.acceleration.x,-Input.acceleration.y).normalized;
@@ -134,7 +133,6 @@ public class PlayerController : MonoBehaviour {
 	}
 	void setgrad(float degree){
 		PV.grad= new Vector2 (Mathf.Cos (degree), Mathf.Sin (degree));
-		PV.angle_ground = degree;
 		Debug.Log ("Setgrad called"+PV.grad.x+","+PV.grad.y);
 	}
 	void Dead_do(){
