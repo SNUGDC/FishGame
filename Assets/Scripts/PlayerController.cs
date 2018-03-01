@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour {
 	private GameController GC;
 	public GameObject SA;
 	public float snapBoundary = 0.2f;
-	int coeffOfV = 1;
+	float coeffOfV = 1;
 	void Awake(){
 		PV =GameObject.FindGameObjectWithTag("PlayerValues").GetComponent<PlayerValues> ();
 		rb = gameObject.GetComponent<Rigidbody2D> ();
@@ -31,8 +31,10 @@ public class PlayerController : MonoBehaviour {
 		}
 		if (PV.inwater==true||PV.land==true) {
 			
-			if(PV.touchcount!=0)
-			rb.velocity = coeffOfV * PV.velocity;
+			if(PV.touchcount!=0){
+				rb.velocity = coeffOfV * PV.velocity;
+				coeffOfV = 1;
+			}
 		}
 
 		/*
@@ -70,12 +72,10 @@ public class PlayerController : MonoBehaviour {
 		if (other.transform.parent != null) {
 			if (other.transform.parent.tag == "Ground") {
 				land_do ();
-				if(other.tag == "Ground_Super"){
-					coeffOfV = 2;
-				}
-				else {
-					coeffOfV = 1;
-				}
+			}
+			else if (other.transform.parent.tag == "Ground_Super"){
+				coeffOfV = Mathf.Sqrt(2);
+				land_do ();
 			}
 		}
 	}
@@ -103,6 +103,8 @@ public class PlayerController : MonoBehaviour {
 		}
 	    if (other.transform.parent!=null) {
 			if(other.transform.parent.tag=="Ground")
+			land_not_do ();
+			else if(other.transform.parent.tag=="Ground_Super")
 			land_not_do ();
 		}
 
