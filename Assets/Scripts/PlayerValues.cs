@@ -17,6 +17,7 @@ public class PlayerValues : MonoBehaviour {
 	public Text left_time_text;
 
 	public float speed;
+	public float Challangetime=0f;
 
 
 	public Vector2 grad;

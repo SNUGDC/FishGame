@@ -18,8 +18,10 @@ public class GameController : MonoBehaviour {
 	void Update(){
 		if (PV.gameover==true)
 			gameover ();
+		PV.Challangetime += Time.deltaTime;
 	}
 	void gameover(){
+		PV.How_many_dead++;
 		/*
 		 * Write code for stop Scenes, gameover UI
 		 * 
@@ -49,11 +51,11 @@ public class GameController : MonoBehaviour {
 			showlefttime ();
 			yield return new WaitForSeconds (0.01f);
 			PV.time_left_x100 -=1;
-			if (PV.time_left_x100 < 6000)
+			if (PV.time_left_x100 < 4000)
 				VFXP.Activate_PlayerSprite (1);
-			if (PV.time_left_x100 < 3000)
+			if (PV.time_left_x100 < 2000)
 				VFXP.Activate_PlayerSprite (2);
-			if (PV.time_left_x100 < 1500)
+			if (PV.time_left_x100 < 1000)
 				VFXP.Activate_PlayerSprite (3);
 			if (PV.time_left_x100 <= 0) {
 				Debug.Log ("gameover");
