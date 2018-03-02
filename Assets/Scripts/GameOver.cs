@@ -40,7 +40,7 @@ public class GameOver : MonoBehaviour {
 			initTime = Time.time;
 			duration = d;
 			canDisappear = false;
-			text1.text = "YOU Are \n"+deadBy.ToString();
+			text1.text = "YOU ARE \n"+deadBy.ToString();
 			image.color = ChangeAlpha(image.color, 0);
 			image0.color = ChangeAlpha(image0.color, 0);
 			text1.color = ChangeAlpha(text1.color, 0);
@@ -54,7 +54,6 @@ public class GameOver : MonoBehaviour {
 			image.color = ChangeAlpha(image.color, time/duration);
 			image0.color = ChangeAlpha(image0.color, time/duration);
 			text1.color = ChangeAlpha(text1.color, time/duration);
-			text2.color = ChangeAlpha(text2.color, time/duration);
 		}
 		else{
 			image.color = ChangeAlpha(image.color, 1);

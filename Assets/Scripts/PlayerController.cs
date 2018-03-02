@@ -13,12 +13,17 @@ public class PlayerController : MonoBehaviour {
 	Vector2 savedVelocity;
 	float savedAngularVelocity;
 	bool isPaused;
+	AudioSource audio;
+	public AudioClip soundDie;
+	public AudioClip soundSplash;
+	public AudioClip soundJump;
 	void Awake(){
 		PV =GameObject.FindGameObjectWithTag("PlayerValues").GetComponent<PlayerValues> ();
 		rb = gameObject.GetComponent<Rigidbody2D> ();
 		GC = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameController> ();
 		VFXP = gameObject.GetComponent<VFX_Player>();
 		PV.StartinWater ();
+		audio = GetComponent<AudioSource>();
 	}// get components
 	void Start(){
 	}//initialize
@@ -57,6 +62,9 @@ public class PlayerController : MonoBehaviour {
 			if(PV.touchcount!=0 && !PV.gameover){
 				rb.velocity = coeffOfV * PV.velocity;
 				coeffOfV = 1;
+				
+				if(PV.inwater) PlaySound(soundSplash);
+				else PlaySound(soundJump);
 			}
 		}
 	}
@@ -139,6 +147,7 @@ public class PlayerController : MonoBehaviour {
 	void obstacle_do()
 	{
 		//Debug.Log ("obstacle_do called");
+		PlaySound(soundDie);
 		rb.velocity = new Vector2(-1 * rb.velocity.x, Input.acceleration.y * 20);
 		//Debug.Log ("obstacle_do called2");
 	}
@@ -151,6 +160,13 @@ public class PlayerController : MonoBehaviour {
 	}
 	void Dead_do(){
 		PV.gameover = true;
+		PlaySound(soundDie);
 		PV.deadBy = DeadBy.COOKED;
+	}
+
+	void PlaySound(AudioClip clip){
+		audio.clip = clip;
+		audio.pitch = 0.2f*Random.value+0.9f;
+		audio.Play();
 	}
 }
