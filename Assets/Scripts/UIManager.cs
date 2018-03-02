@@ -15,8 +15,11 @@ public class UIManager : MonoBehaviour {
 		}
 	}
 	public void MoveScene(string sceneName){
+		if(GameObject.FindGameObjectWithTag("PlayerValues") != null){
+			PV = GameObject.FindGameObjectWithTag("PlayerValues").GetComponent<PlayerValues> ();
+			PV.isPaused = false;
+		}
 		SceneManager.LoadScene(sceneName);
-		PV.isPaused = false;
 	}
 	public void QuitGame(){
 		Application.Quit();
