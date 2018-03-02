@@ -54,6 +54,7 @@ public class GameOver : MonoBehaviour {
 			image.color = ChangeAlpha(image.color, time/duration);
 			image0.color = ChangeAlpha(image0.color, time/duration);
 			text1.color = ChangeAlpha(text1.color, time/duration);
+			text2.color = ChangeAlpha(text2.color, time/duration/2);
 		}
 		else{
 			image.color = ChangeAlpha(image.color, 1);

@@ -7218,6 +7218,9 @@ MonoBehaviour:
   SA: {fileID: 1109891168196544, guid: 890f7b16c9e0f464984e245dba6a2c1f, type: 2}
   VFXP: {fileID: 0}
   snapBoundary: 0.2
+  soundDie: {fileID: 8300000, guid: 03857d6cf9ff8de44a944590ba679634, type: 3}
+  soundSplash: {fileID: 8300000, guid: a547ce539278e3f4b99d8ce2c97f1ec8, type: 3}
+  soundJump: {fileID: 8300000, guid: f1d571edb4001b94fbb2f162a9558aa7, type: 3}
 --- !u!4 &1253696094
 Transform:
   m_ObjectHideFlags: 0

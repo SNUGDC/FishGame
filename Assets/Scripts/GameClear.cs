@@ -62,6 +62,7 @@ public class GameClear : MonoBehaviour {
 			text0.color = ChangeAlpha(text0.color, time/duration);
 			text1.color = ChangeAlpha(text1.color, time/duration);
 			text2.color = ChangeAlpha(text2.color, time/duration);
+			text3.color = ChangeAlpha(text3.color, time/duration/2);
 		}
 		else{
 			image.color = ChangeAlpha(image.color, 1);
