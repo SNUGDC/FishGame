@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour {
 			savedAngularVelocity = rb.angularVelocity;
 			Time.timeScale = 0.0f;
 			rb.simulated = false;
-			Debug.Log("Paused");
+			//Debug.Log("Paused");
 			return;
 		}
 		else if (!PV.isPaused && isPaused){
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour {
 			rb.velocity = savedVelocity;
 			rb.angularVelocity = savedAngularVelocity;
 			isPaused = false;
-			Debug.Log("Unpaused");
+			//Debug.Log("Unpaused");
 		}
 		Vector2 tilt=new Vector2(Input.acceleration.x,-Input.acceleration.y).normalized;
 		tilt.y=tilt.y>0?tilt.y:-tilt.y;
@@ -68,6 +68,9 @@ public class PlayerController : MonoBehaviour {
 		} 
 		if (other.tag == "Obstacle"){
 			obstacle_do();
+		}
+		if(other.tag == "Clear"){
+			Clear_do();
 		}
 		if (other.tag == "Dead") {
 			Dead_do ();
@@ -117,7 +120,7 @@ public class PlayerController : MonoBehaviour {
 		PV.inwater = true;
 		PV.Savepoint = other.transform;
 		PV.resetgrad ();
-		StopCoroutine (GC.TimeCounter);
+		if(GC.TimeCounter != null) StopCoroutine (GC.TimeCounter);
 		GC.hidelefttime();
 		VFXP.Activate_PlayerSprite (0);
 	}
@@ -126,22 +129,25 @@ public class PlayerController : MonoBehaviour {
  		GC.set_left_time ();
 	}
 	void land_do (){
-		Debug.Log ("land_do called");
+		//Debug.Log ("land_do called");
 		PV.land = true;
 	}
 	void land_not_do(){
-		Debug.Log ("land_not_do called");
+		//Debug.Log ("land_not_do called");
 		PV.land = false;
 	}
 	void obstacle_do()
 	{
-		Debug.Log ("obstacle_do called");
+		//Debug.Log ("obstacle_do called");
 		rb.velocity = new Vector2(-1 * rb.velocity.x, Input.acceleration.y * 20);
-		Debug.Log ("obstacle_do called2");
+		//Debug.Log ("obstacle_do called2");
 	}
 	void setgrad(float degree){
 		PV.grad= new Vector2 (Mathf.Cos (degree), Mathf.Sin (degree));
-		Debug.Log ("Setgrad called"+PV.grad.x+","+PV.grad.y);
+		//Debug.Log ("Setgrad called"+PV.grad.x+","+PV.grad.y);
+	}
+	void Clear_do(){
+		PV.gameClear = true;
 	}
 	void Dead_do(){
 		PV.gameover = true;

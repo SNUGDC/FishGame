@@ -11,6 +11,7 @@ public class AngleControll : MonoBehaviour {
 	public void barset(){
 		PV = GameObject.FindGameObjectWithTag ("PlayerValues").GetComponent<PlayerValues> ();
 		player = GameObject.FindGameObjectWithTag ("Player");
+		initiate = true;
 	}
 
 	void Update(){

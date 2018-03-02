@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerValues : MonoBehaviour {
 	public bool gameover;
+	public bool gameClear;
 	public bool inwater;
 	public bool land;
 	public bool showangle_on;
@@ -36,5 +37,12 @@ public class PlayerValues : MonoBehaviour {
 	}
 	public void resetgrad(){
 		grad = new Vector2 (1, 0);
+	}
+	void Start(){
+		gameClear = false;
+		gameover = false;
+		isPaused = false;
+		How_many_dead = 0;
+		Challangetime = 0;
 	}
 }

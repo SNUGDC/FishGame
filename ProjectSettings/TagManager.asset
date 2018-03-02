@@ -14,6 +14,7 @@ TagManager:
   - Ground_-60
   - Ground_Super
   - Dead
+  - Clear
   layers:
   - Default
   - TransparentFX

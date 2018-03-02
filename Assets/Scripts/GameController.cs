@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour {
 	private PlayerValues PV;
 	private VFX_Player VFXP;
 	private GameObject Player;
+	public GameObject gameClearUI;
 	public GameObject gameOverUI;
 	public Coroutine TimeCounter;
 	void Awake(){
@@ -20,20 +21,20 @@ public class GameController : MonoBehaviour {
 	void Update(){
 		float timenow = Time.time;
 
-
-
-
-
+		if(PV.gameClear && !gameClearUI.GetComponent<GameClear>().isFading){
+			gameClearUI.GetComponent<GameClear>().StartFade(3f);
+		}
 		if (PV.gameover==true && !gameOverUI.GetComponent<GameOver>().isFading){
 			gameover ();
 		}
 		PV.Challangetime += Time.deltaTime;
 	}
+	
 	void gameover(){
-		Debug.Log("gameover : "+Time.time);
-		StartCoroutine(RestartAfterDuration(3f));
+		//Debug.Log("gameover : "+Time.time);
+		StartCoroutine(GameOverForDuration(3f));
 	}
-	IEnumerator RestartAfterDuration(float duration){
+	IEnumerator GameOverForDuration(float duration){
 		PV.How_many_dead++;
 		
 		gameOverUI.GetComponent<GameOver>().StartFade(duration, PV.deadBy);
@@ -44,7 +45,6 @@ public class GameController : MonoBehaviour {
 		Player.GetComponent<Rigidbody2D> ().velocity = new Vector3 (0, 0, 0);
 		Player.GetComponent<Rigidbody2D> ().angularVelocity = 0;
 		PV.StartinWater ();
-
 	}
 
 	public void showlefttime(){
