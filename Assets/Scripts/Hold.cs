@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Hold : MonoBehaviour {
-
+	ScreenOrientation initial;
 	void Awake () {
-		Screen.orientation = ScreenOrientation.LandscapeLeft;
+		initial = Screen.orientation;
+		Screen.orientation = initial;
 	}
 
 }
