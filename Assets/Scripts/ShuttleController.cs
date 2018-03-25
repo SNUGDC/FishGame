@@ -12,7 +12,7 @@ public class ShuttleController : MonoBehaviour {
 	public float value;
 	public bool isLoop = true;
 
-	Vector3 initPos, finalPos;
+	Vector3 initPos, finalPos, delta;
 	float timer;
 	PlayerValues PV;
 
@@ -53,6 +53,13 @@ public class ShuttleController : MonoBehaviour {
 			if(GetTime() > value)	timer += value;
 			t = GetTime() / value;
 		}
+		delta = transform.position;
 		transform.position = (1 - t) * initPos + t * finalPos;
+		delta = transform.position - delta;
+	}
+	void OnCollisionStay(Collision other){
+		if(other.gameObject.tag == "Player"){
+			other.transform.position += delta;
+		}
 	}
 }

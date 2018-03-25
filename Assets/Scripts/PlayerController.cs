@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour {
 		PV.velocity=new Vector2(
 			tilt.x*PV.grad.x-tilt.y*PV.grad.y,
 			tilt.y*PV.grad.x+tilt.x*PV.grad.y
-		)*PV.speed;
+		)*PV.speed*1.05f;
 
 		PV.touchcount = Input.touchCount;
 		if (PV.land&&PV.showangle_on==false) {
