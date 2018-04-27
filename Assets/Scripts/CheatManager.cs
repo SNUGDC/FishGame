@@ -12,6 +12,7 @@ public class CheatManager : MonoBehaviour {
 		player = GameObject.FindGameObjectWithTag("Player");
 	}	
 	public void SwitchActive(){
+		return;
 		if(!gameObject.active) {
 			turnOnNum++;
 			if (turnOnNum >= 3){
